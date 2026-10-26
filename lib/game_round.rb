@@ -1,4 +1,6 @@
 class GameRound
+  attr_reader :player_guesses
+
   def initialize
     @player_guesses = 8
   end

@@ -1,4 +1,6 @@
 class Secret
+  attr_reader :secret_word
+
   def initialize
     @candidates = []
   end
@@ -13,7 +15,7 @@ class Secret
 
   def generate_candidate_words
     File.readlines("lib/google-10000-english.txt").each do |line|
-      @candidates.push([line.chomp]) if line.chomp.length.between?(5, 12)
+      @candidates.push(line.chomp.chars) if line.chomp.length.between?(5, 12)
     end
   end
 end
