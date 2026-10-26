@@ -9,6 +9,10 @@ class GameRound
     print "#{@player_guesses} Guesses left".colorize(:green)
   end
 
+  def print_wrong_letters(wrongs:)
+    print "       Wrong letters: #{wrongs}\n".colorize(:red)
+  end
+
   def remove_player_guess
     @player_guesses -= 1
   end

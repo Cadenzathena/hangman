@@ -22,17 +22,20 @@ selected_mode = prompt.select_mode(
 
 if selected_mode == "NEW GAME"
   secret.pick_secret_code
+  game_round.print_round_start_info
   while game_round.player_guesses.positive?
-    game_round.print_round_start_info
     game_round.print_player_guesses_left
+    game_round.print_wrong_letters(wrongs: player_word.wrong_submission)
     player_input.request_input
 
-    if game_verdict.correct_letter?(secret_word: secret.secret_word, letter: player_input.input)
-      player_word.update_submission(secret_word: secret.secret_word, letter: player_input.input)
-      p player_word.submission
+    if game_verdict.correct_letter?(secret_word: secret.secret_word, input: player_input.input)
+      game_verdict.print_correct_feedback
+      player_word.update_correct_submission(secret_word: secret.secret_word, input: player_input.input)
+      p player_word.correct_submission
     else
+      game_verdict.print_wrong_feedback
+      player_word.update_wrong_submission(input: player_input.input)
       game_round.remove_player_guess
-      next
     end
   end
 
