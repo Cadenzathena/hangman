@@ -12,7 +12,7 @@ class GameRound
   end
 
   def print_round_start_info
-    puts "Input a single letter to find the secret word!\nA wrong letter will reduce your guesses!"
-    puts "Input #{'SAVE'.colorize(:blue)} to save your game"
+    puts "\nInput a single letter to find the secret word!\nA wrong letter will reduce your guesses!"
+    puts "Input #{'"save"'.colorize(:blue)} to save your game"
   end
 end

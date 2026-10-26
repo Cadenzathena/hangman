@@ -3,10 +3,12 @@ require "tty-prompt"
 require_relative "lib/tty_prompt_wrapper"
 require_relative "lib/game_round"
 require_relative "lib/secret"
+require_relative "lib/player_input"
 
 prompt = TTYPromptWrapper.new
 secret = Secret.new
 game_round = GameRound.new
+player_input = PlayerInput.new
 
 puts "PLAY HANGMAN"
 selected_mode = prompt.select_mode(
@@ -18,6 +20,7 @@ if selected_mode == "NEW GAME"
   game_round.print_round_start_info
   game_round.print_player_guesses_left
   secret.pick_secret_code
+  player_input.request_input
 else
   puts "Not ready yet!"
 end
