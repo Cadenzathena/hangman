@@ -1,13 +1,19 @@
+# saves the state of the programs in a reloadable json file
 module Save
-  def self.save_attr(arr)
-    if File.exist?("saves/hangman_save.txt")
-      File.open("saves/hangman_save.txt", "w") do |file|
-        json_arr = JSON.dump(arr)
-        file.puts json_arr
+  def self.save_state(hash)
+    if File.exist?("saves/hangman_save.json")
+      File.open("saves/hangman_save.json", "w") do |file|
+        serial_json = JSON.dump(hash)
+        file.puts serial_json
       end
     else
-      File.new("saves/hangman_save.txt", "w")
-      save_attr(arr)
+      File.new("saves/hangman_save.json", "w")
+      save_attr(hash)
     end
+  end
+
+  def self.print_save_info
+    puts " 🛈 Your game has been saved ".colorize(color: :black, background: :yellow)
+    puts "\n"
   end
 end

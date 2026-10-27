@@ -16,6 +16,8 @@ guess = Guess.new
 answer = Answer.new
 player_input = PlayerInput.new
 game_verdict = GameVerdict.new
+hangman_state = { secret: secret, guess: guess, answer: answer,
+                  player_input: player_input, game_verdict: game_verdict }
 
 puts "PLAY HANGMAN"
 selected_mode = prompt.select_mode(
@@ -35,9 +37,8 @@ if selected_mode == "NEW GAME"
     player_input.request_input
 
     if player_input.input == "save"
-      Save.save_attr([secret, guess, answer, player_input, game_verdict])
-      puts " 🛈 Your game has been saved ".colorize(color: :black, background: :yellow)
-      puts "\n"
+      Save.save_state(hangman_state)
+      Save.print_save_info
       redo
     end
 
