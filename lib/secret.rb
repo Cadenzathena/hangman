@@ -1,3 +1,4 @@
+# creates the secret word
 class Secret
   attr_reader :secret_word
 
@@ -8,7 +9,6 @@ class Secret
   def pick_secret_code
     generate_candidate_words
     @secret_word = @candidates.sample
-    p @secret_word
   end
 
   private
