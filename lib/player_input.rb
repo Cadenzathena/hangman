@@ -1,3 +1,4 @@
+# requests and validates player input
 class PlayerInput
   attr_reader :input
 

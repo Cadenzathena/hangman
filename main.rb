@@ -11,9 +11,9 @@ require_relative "lib/answer"
 prompt = TTYPromptWrapper.new
 secret = Secret.new
 guess = Guess.new
+answer = Answer.new
 player_input = PlayerInput.new
 game_verdict = GameVerdict.new
-answer = Answer.new
 
 puts "PLAY HANGMAN"
 selected_mode = prompt.select_mode(
@@ -35,12 +35,17 @@ if selected_mode == "NEW GAME"
     if game_verdict.correct_letter?(secret_word: secret.secret_word, input: player_input.input)
       Rounds.print_correct_feedback
       answer.update_answer(secret_word: secret.secret_word, input: player_input.input)
+      next unless game_verdict.win?(secret_word: secret.secret_word, player_answer: answer.answer)
+
+      puts "You found the secret word! You win!"
+      return
     else
       Rounds.print_wrong_feedback
       answer.update_wrong_answer(input: player_input.input)
       guess.decrease_guesses
     end
   end
+  puts "You ran out of guesses! The secret word was #{secret.secret_word.join.colorize(:yellow)}"
 
 elsif selected_mode == "LOAD GAME"
   puts "Not ready yet!"
