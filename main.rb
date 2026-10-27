@@ -1,6 +1,6 @@
 require "colorize"
 require "tty-prompt"
-require_relative "lib/round_start"
+require_relative "lib/rounds"
 require_relative "lib/tty_prompt_wrapper"
 require_relative "lib/game_round"
 require_relative "lib/secret"
@@ -23,7 +23,7 @@ selected_mode = prompt.select_mode(
 
 if selected_mode == "NEW GAME"
   secret.pick_secret_code
-  RoundStart.print_round_start_info
+  Rounds.print_round_start_info
   player_word.generate_indexes(secret_word: secret.secret_word)
 
   while game_round.guesses.positive?
@@ -33,10 +33,10 @@ if selected_mode == "NEW GAME"
     player_input.request_input
 
     if game_verdict.correct_letter?(secret_word: secret.secret_word, input: player_input.input)
-      game_verdict.print_correct_feedback
+      Rounds.print_correct_feedback
       player_word.update_correct_submission(secret_word: secret.secret_word, input: player_input.input)
     else
-      game_verdict.print_wrong_feedback
+      Rounds.print_wrong_feedback
       player_word.update_wrong_submission(input: player_input.input)
       game_round.decrease_guesses
     end
