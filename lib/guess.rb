@@ -1,4 +1,5 @@
-class GameRound
+# decreases guesses when necessary
+class Guess
   attr_reader :guesses
 
   def initialize
@@ -9,7 +10,7 @@ class GameRound
     @guesses -= 1
   end
 
-  def print_guesses_left
+  def print_guesses
     print "#{@guesses} Guesses left".colorize(:green)
   end
 
