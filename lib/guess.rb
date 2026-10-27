@@ -1,6 +1,6 @@
 # decreases guesses when necessary
 class Guess
-  attr_reader :guesses
+  attr_accessor :guesses
 
   def initialize
     @guesses = 8

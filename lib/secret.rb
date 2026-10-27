@@ -1,6 +1,6 @@
 # creates the secret word
 class Secret
-  attr_reader :secret_word
+  attr_accessor :secret_word
 
   def initialize
     @candidates = []

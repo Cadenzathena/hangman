@@ -1,6 +1,6 @@
 # updates the players valid answers/submissions
 class Answer
-  attr_reader :answer, :wrong_answer
+  attr_accessor :answer, :wrong_answer
 
   def initialize
     @answer = []
