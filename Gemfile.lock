@@ -52,6 +52,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 1.1)
+  json (~> 3.1)
   rubocop (~> 1.92)
   tty-prompt (~> 0.23.1)
 
